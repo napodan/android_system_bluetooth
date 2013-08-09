@@ -14,21 +14,42 @@
 # limitations under the License.
 #
 LOCAL_PATH := $(my-dir)
-include $(CLEAR_VARS)
 
 dest_dir := $(TARGET_OUT)/etc/bluetooth
 
-files := \
-	audio.conf \
-	input.conf \
-	main.conf \
-	blacklist.conf \
-	auto_pairing.conf
+include $(CLEAR_VARS)
+LOCAL_MODULE := audio.conf
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(dest_dir)
+include $(BUILD_PREBUILT)
 
-copy_to := $(addprefix $(dest_dir)/,$(files))
+include $(CLEAR_VARS)
+LOCAL_MODULE := input.conf
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(dest_dir)
+include $(BUILD_PREBUILT)
 
-$(copy_to): PRIVATE_MODULE := bluetooth_etcdir
-$(copy_to): $(dest_dir)/%: $(LOCAL_PATH)/% | $(ACP)
-	$(transform-prebuilt-to-target)
+include $(CLEAR_VARS)
+LOCAL_MODULE := main.conf
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(dest_dir)
+include $(BUILD_PREBUILT)
 
-ALL_PREBUILT += $(copy_to)
+include $(CLEAR_VARS)
+LOCAL_MODULE := blacklist.conf
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(dest_dir)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := auto_pairing.conf
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(dest_dir)
+include $(BUILD_PREBUILT)
+
+
